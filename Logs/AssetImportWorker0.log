@@ -1,0 +1,163 @@
+Using pre-set license
+Built from '2020.3/release' branch; Version is '2020.3.2f1 (8fd9074bf66c) revision 9427207'; Using compiler version '192528614'; Build Type 'Release'
+OS: 'Windows 10 Pro; OS build 19042.928; Version 2009; 64bit' Language: 'de' Physical Memory: 16334 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
+
+ COMMAND LINE ARGUMENTS:
+C:\Program Files\JetBrains\JetBrains Rider 2020.2.4\bin\2020.3.2f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker0
+-projectPath
+C:/Users/juriw/Desktop/Projekts/Unity/tower-defense
+-logFile
+Logs/AssetImportWorker0.log
+-srvPort
+64307
+Successfully changed project path to: C:/Users/juriw/Desktop/Projekts/Unity/tower-defense
+C:/Users/juriw/Desktop/Projekts/Unity/tower-defense
+Using Asset Import Pipeline V2.
+Refreshing native plugins compatible for Editor in 20.08 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2020.3.2f1 (8fd9074bf66c)
+[Subsystems] Discovering subsystems at path C:/Program Files/JetBrains/JetBrains Rider 2020.2.4/bin/2020.3.2f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/juriw/Desktop/Projekts/Unity/tower-defense/Assets
+GfxDevice: creating device client; threaded=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce GTX 1070 (ID=0x1b81)
+    Vendor:   
+    VRAM:     8088 MB
+    Driver:   27.21.14.6611
+Initialize mono
+Mono path[0] = 'C:/Program Files/JetBrains/JetBrains Rider 2020.2.4/bin/2020.3.2f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/JetBrains/JetBrains Rider 2020.2.4/bin/2020.3.2f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = 'C:/Program Files/JetBrains/JetBrains Rider 2020.2.4/bin/2020.3.2f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56212
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/JetBrains/JetBrains Rider 2020.2.4/bin/2020.3.2f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.001781 seconds.
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 20.25 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.864 seconds
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.000475 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.25 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.630 seconds
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.04 seconds
+Refreshing native plugins compatible for Editor in 0.24 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1114 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 57.0 MB.
+System memory in use after: 57.0 MB.
+
+Unloading 9 unused Assets to reduce memory usage. Loaded Objects now: 1557.
+Total: 1.881800 ms (FindLiveObjects: 0.192700 ms CreateObjectMapping: 0.033200 ms MarkObjects: 1.603100 ms  DeleteObjects: 0.052100 ms)
+
+========================================================================
+Received Import Request.
+  path: Assets/Tower.fbx
+  artifactKey: Guid(5770dcc215b48bc429867a56af0b0e49) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tower.fbx using Guid(5770dcc215b48bc429867a56af0b0e49) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4feff5b3047742108fbfd8d1897df31c') in 0.110681 seconds
+  Import took 0.112699 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 99.693915 seconds.
+  path: Assets/Models/Tower.fbx
+  artifactKey: Guid(5770dcc215b48bc429867a56af0b0e49) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Tower.fbx using Guid(5770dcc215b48bc429867a56af0b0e49) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '58fe321c3041bfc5f31aa14edded8b08') in 0.012419 seconds
+  Import took 0.014848 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 27.148847 seconds.
+  path: Assets/Models/Tower.fbx
+  artifactKey: Guid(5770dcc215b48bc429867a56af0b0e49) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Tower.fbx using Guid(5770dcc215b48bc429867a56af0b0e49) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7230f9c72156589145135352da3ca374') in 0.016869 seconds
+  Import took 0.019008 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1880.877994 seconds.
+  path: Assets/Models/Tower.fbx
+  artifactKey: Guid(5770dcc215b48bc429867a56af0b0e49) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Tower.fbx using Guid(5770dcc215b48bc429867a56af0b0e49) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b5bf457b913d0de92fe5c7c6158682a3') in 0.016709 seconds
+  Import took 0.018984 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 180.704021 seconds.
+  path: Assets/Models/Tower.fbx
+  artifactKey: Guid(5770dcc215b48bc429867a56af0b0e49) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Tower.fbx using Guid(5770dcc215b48bc429867a56af0b0e49) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dd8cb62591e2b2cf58a6a11606321142') in 0.012939 seconds
+  Import took 0.015293 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 229.920310 seconds.
+  path: Assets/Models/Tower.fbx
+  artifactKey: Guid(5770dcc215b48bc429867a56af0b0e49) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Tower.fbx using Guid(5770dcc215b48bc429867a56af0b0e49) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a104b1df2168229ac51dbea042700ab8') in 0.011191 seconds
+  Import took 0.013500 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 90.487619 seconds.
+  path: Assets/Models/Tower.fbx
+  artifactKey: Guid(5770dcc215b48bc429867a56af0b0e49) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Tower.fbx using Guid(5770dcc215b48bc429867a56af0b0e49) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b57d914705c8d51755f7faf1bbe4bfee') in 0.009750 seconds
+  Import took 0.011865 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 74.408087 seconds.
+  path: Assets/Models/Tower.fbx
+  artifactKey: Guid(5770dcc215b48bc429867a56af0b0e49) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Tower.fbx using Guid(5770dcc215b48bc429867a56af0b0e49) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '09a1b18d7d37994b30c23507aa02bdc3') in 0.009769 seconds
+  Import took 0.011947 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000949 seconds.
+  path: Assets/Models/Tower.fbx
+  artifactKey: Guid(5770dcc215b48bc429867a56af0b0e49) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Tower.fbx using Guid(5770dcc215b48bc429867a56af0b0e49) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '09a1b18d7d37994b30c23507aa02bdc3') in 0.011755 seconds
+  Import took 0.014684 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 123.145991 seconds.
+  path: Assets/Models/Tower.fbx
+  artifactKey: Guid(5770dcc215b48bc429867a56af0b0e49) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Tower.fbx using Guid(5770dcc215b48bc429867a56af0b0e49) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e0dc748db6f8dd59009cc4dbf3e46543') in 0.015921 seconds
+  Import took 0.018072 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 11.516619 seconds.
+  path: Assets/Models/Tower.fbx
+  artifactKey: Guid(5770dcc215b48bc429867a56af0b0e49) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Tower.fbx using Guid(5770dcc215b48bc429867a56af0b0e49) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f5b2837895fad357b3fae4a760e338cc') in 0.010205 seconds
+  Import took 0.012431 seconds .
+
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file
