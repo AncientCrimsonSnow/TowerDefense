@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StateManager : Singleton<StateManager>
+public class StateManager : MonoBehaviour
 {
    private readonly int[] _state = {0, 0, 0};
    
@@ -19,11 +19,10 @@ public class StateManager : Singleton<StateManager>
    private void Awake()
    {
       ChangeState(0,0);
-      PrintState();
    }
-
    public void ChangeState(int newState, int depth)
    {
+      PrintState();
       //Checks if param are valid
       if (depth < 0 || depth > _state.Length - 1)
       {
@@ -75,7 +74,6 @@ public class StateManager : Singleton<StateManager>
                   break;
                case 1:
                   //Showing MainMenu
-                  
                   break;
                case 2:
                   //MenuPoints
