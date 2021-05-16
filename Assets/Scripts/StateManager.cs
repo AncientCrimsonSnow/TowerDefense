@@ -3,8 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StateManager : MonoBehaviour
+public class StateManager : Singleton<StateManager>
 {
+   [SerializeField] private LoadingManager loadingManager;
+   
    private readonly int[] _state = {0, 0, 0};
    
    public int GetState(int depth)
@@ -20,9 +22,13 @@ public class StateManager : MonoBehaviour
    {
       ChangeState(0,0);
    }
-   public void ChangeState(int newState, int depth)
+
+   public void ChangeState(int newState)
    {
-      PrintState();
+      ChangeState(newState,_state.Length - 1);
+   }
+   private void ChangeState(int newState, int depth)
+   {
       //Checks if param are valid
       if (depth < 0 || depth > _state.Length - 1)
       {
@@ -46,6 +52,7 @@ public class StateManager : MonoBehaviour
             _state[i] = 0;
          }
       }
+      PrintState();
       PerformStateBehavior();
    }
 
@@ -59,89 +66,77 @@ public class StateManager : MonoBehaviour
       switch (_state[0])
       {
          case 0:
-            //Do some loadingStuff
-
+            //Default Start Scene
             ChangeState(1,0);
             break;
          case 1:
             //Menu
+            CheckScene(1);
             switch (_state[1])
             {
                case 0:
                   //loading MainMenu
-
                   ChangeState(1,1);
                   break;
                case 1:
-                  //Showing MainMenu
-                  break;
-               case 2:
                   //MenuPoints
                   switch (_state[2])
                   {
                      case 0:
-                        //loading firstMenuPoint
-
+                        //Wait
                         break;
                      case 1:
-                        //loading secMenuPoint...
-
+                        //loading IngameScene
+                        ChangeState(2,0);
                         break;
                   }
-
                   break;
             }
-
             break;
          case 2:
+            CheckScene(2);
             //ingame
             switch (_state[1])
             {
                case 0:
                   //Loading IngameStuff
-                  
-                  ChangeState(1,1);
+                  ChangeState(1, 1);
                   break;
                case 1:
-                  //start Spawning
-                  
-                  break;
-               case 2:
-                  //spawning
-                  
-                  break;
-               case 3:
-                  //Do winningStuff
-                  
-                  ChangeState(3,0);
-                  break;
-               case 4:
-                  //Do losingStuff
-                  
-                  ChangeState(3,0);
+                  //Playing
+                  switch (_state[2])
+                  {
+                     case 0:
+                        //spawning
+
+                        break;
+                     case 1:
+                        //Do winningStuff
+                        Debug.Log("win");
+                        ChangeState(3, 0);
+                        break;
+                     case 2:
+                        //Do losingStuff
+                        Debug.Log("lose");
+                        ChangeState(3, 0);
+                        break;
+                  }
                   break;
             }
             break;
          case 3:
-            //statistics (endScreen)
-            switch (_state[1])
-            {
-               case 0:
-                  //load Statistics
-                  
-                  ChangeState(1,1);
-                  break;
-               case 1:
-                  //show Statistics
-                  
-                  break;
-               case 2:
-                  //goBacktoMainMenu
-                  
-                  ChangeState(1,0);
-                  break;
-            }
+            //reload Menu
+            Debug.Log("reload");
+            ChangeState(1,0);
             break;
+      }
+   }
+
+   private void CheckScene(int SceneID)
+   {
+      if (loadingManager.GetCurrSceneIndex() != SceneID)
+      {
+         loadingManager.LoadScene(SceneID);
       }
    }
 }

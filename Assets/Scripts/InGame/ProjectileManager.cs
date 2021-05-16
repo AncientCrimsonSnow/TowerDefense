@@ -6,15 +6,12 @@ public class ProjectileManager : MonoBehaviour
 {
     
     
-    [SerializeField] private GameObject prefab_Projectile;
+    [SerializeField] private GameObject prefabProjectile;
     public void Shoot()
     {
         Vector3 pos = RandomCircle(new Vector3(0,0.5f,0),Random.Range(5,20) );
-        GameObject projectile = Instantiate(prefab_Projectile, pos, Quaternion.identity);
+        GameObject projectile = Instantiate(prefabProjectile, pos, Quaternion.identity);
         //Todo Projectile hier in Richtung fliegen lassen.
-        
-        
-        
         
     }
     

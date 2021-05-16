@@ -9,7 +9,6 @@ public class TowerController : MonoBehaviour
     
     [SerializeField] private ProjectileManager _projectileManager;
     
-
     public ref int getRefToTowerHP()
     {
         return ref hp;
