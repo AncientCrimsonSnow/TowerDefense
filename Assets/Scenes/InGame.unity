@@ -310,7 +310,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &1252229772
 GameObject:
@@ -344,7 +344,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitToSpawn: {fileID: 8049203509262090332, guid: fac408e31e7426441890554bc82b110e,
     type: 3}
-  temp: 1
 --- !u!4 &1252229774
 Transform:
   m_ObjectHideFlags: 0
@@ -371,8 +370,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adc3d3ccfae20ba47b87f8b488cca4f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  win: 0
-  lose: 0
 --- !u!1 &1390559294 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5770dcc215b48bc429867a56af0b0e49,
@@ -421,7 +418,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ebd5b3712e12884d861fca767ce8185, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 1000000
+  hp: 1000
   _projectileManager: {fileID: 1574669674}
 --- !u!1001 &1486254723
 PrefabInstance:
@@ -433,7 +430,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 5770dcc215b48bc429867a56af0b0e49,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5770dcc215b48bc429867a56af0b0e49,
         type: 3}

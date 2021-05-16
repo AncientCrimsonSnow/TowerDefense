@@ -1,35 +1,28 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class InGameManager : MonoBehaviour
+namespace InGame
 {
-    public Boolean win = false;
-    public Boolean lose = false;
-
-    private void Update()
+    public class InGameManager : Singleton<InGameManager>
     {
-        if (win)
+        public void Win()
         {
-            win = false;
-            Win();
-            
+            StateManager.Instance.ChangeState(1);
         }
-        if (lose)
+        public void Lose()
         {
-            lose = false;
-            Lose();
+            StateManager.Instance.ChangeState(2);
         }
-    }
-
-
-    public void Win()
-    {
-        StateManager.Instance.ChangeState(1);
-    }
-    public void Lose()
-    {
-        StateManager.Instance.ChangeState(2);
+        
+        /*
+         * Clear all the Projectiles in Scene
+         */
+        public void ClearAllProjectiles()
+        {
+            var projectiles = GameObject.FindGameObjectsWithTag("Projectile");
+            foreach (var projectile in projectiles)
+            {
+                DestroyImmediate(projectile);
+            }
+        }
     }
 }

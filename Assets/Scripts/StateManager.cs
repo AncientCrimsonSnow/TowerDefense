@@ -52,7 +52,7 @@ public class StateManager : Singleton<StateManager>
             _state[i] = 0;
          }
       }
-      PrintState();
+      //PrintState();
       PerformStateBehavior();
    }
 
