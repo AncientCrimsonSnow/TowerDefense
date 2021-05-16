@@ -1,24 +1,27 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
-public class TowerController : MonoBehaviour
+namespace InGame
 {
-    public int hp;
-    
-    [SerializeField] private ProjectileManager _projectileManager;
-    
-    public ref int getRefToTowerHP()
+    public class TowerController : MonoBehaviour
     {
-        return ref hp;
-    }
+        public int hp;
+    
+        [SerializeField] private ProjectileManager _projectileManager;
 
-    private void FixedUpdate()
-    {
-        if (Input.GetMouseButton(0))
+        private void Awake()
         {
-            _projectileManager.Shoot();
+            hp = Math.Max(1, 100 - Difficulty.Instance.difficulty * 25);
+        }
+
+        private void FixedUpdate()
+        {
+            //If we shoot!
+            if (Input.GetMouseButton(0))
+            {
+                _projectileManager.Shoot();
+            }
         }
     }
 }

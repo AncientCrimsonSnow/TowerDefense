@@ -1,29 +1,34 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class ProjectileController : MonoBehaviour
+namespace InGame
 {
-    public int durability;
-
-    public void Freeze(bool freeze)
+    public class ProjectileController : MonoBehaviour
     {
-        if (freeze)
-        {
-            gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll; 
-        }
-        else
-        {
-            gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-        }
-    }
+        //HP of the Projectile
+        public int durability;
 
-    private void OnCollisionEnter(Collision other)
-    {
-        if (other.gameObject.name.Equals("Ground"))
+        /*
+         * if we want to freeze it:
+         */
+        public void Freeze(bool freeze)
         {
-            Freeze(true);
+            if (freeze)
+            {
+                gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll; 
+            }
+            else
+            {
+                gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+            }
+        }
+
+        private void OnCollisionEnter(Collision other)
+        {
+            //Freeze the Projectile, if we hit the Ground
+            if (other.gameObject.name.Equals("Ground"))
+            {
+                Freeze(true);
+            }
         }
     }
 }
