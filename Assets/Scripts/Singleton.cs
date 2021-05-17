@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 // This class is generic, which means that you can create multiple versions
@@ -45,7 +43,7 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         // object, so to create this instance, we'll create a new game
         // object, and attach the new component.
         // Figure out what to name the singleton
-        var name = typeof(T).Name + " Singleton";
+        var name = typeof(T).Name;
         // Create the container game object with that name
         var containerGameObject = new GameObject(name);
         // Create and attach a new instance of whatever 'T' is; we'll return
