@@ -17,7 +17,7 @@ public class Spawner : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Spawn(50000);
+        //Spawn(50000);
     }
     
     public void Spawn(int speed)

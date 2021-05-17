@@ -19,7 +19,8 @@ public class TowerController : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
-            _projectileManager.Shoot();
+            Vector3 mousePos = Input.mousePosition;
+            _projectileManager.Shoot(mousePos);
         }
     }
 }

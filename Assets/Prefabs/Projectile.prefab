@@ -125,4 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 954ffacf86169ac419326ebb68183d80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 1
   durability: 10
+  step: 0
+  mousePos: {x: 0, y: 0, z: 0}

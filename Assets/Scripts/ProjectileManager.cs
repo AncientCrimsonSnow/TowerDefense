@@ -4,18 +4,32 @@ using UnityEngine;
 
 public class ProjectileManager : MonoBehaviour
 {
-    
-    
-    [SerializeField] private GameObject prefab_Projectile;
-    public void Shoot()
+    [SerializeField] GameObject tower;
+    [SerializeField] [Range(0.0f, 100.0f)] float speed = 0.1f;
+
+    public Vector3 mousePosition;
+
+    private void Start()
     {
-        Vector3 pos = RandomCircle(new Vector3(0,0.5f,0),Random.Range(5,20) );
-        GameObject projectile = Instantiate(prefab_Projectile, pos, Quaternion.identity);
-        //Todo Projectile hier in Richtung fliegen lassen.
-        
-        
-        
-        
+        tower = GameObject.Find("Tower");
+    }
+
+    [SerializeField] private GameObject prefab_Projectile;
+    public void Shoot(Vector3 mousePos)
+    {
+        //Vector3 pos = RandomCircle(new Vector3(0,0.5f,0),Random.Range(5,20) );
+
+        mousePosition = mousePos;
+
+        // get the position of the tower
+        // the posoition is the top of the tower
+        Vector3 towerPos = tower.transform.position;
+
+        // Spawn projectile at the top of the tower
+        GameObject projectile = Instantiate(prefab_Projectile, towerPos, Quaternion.identity);
+        //projectile.GetComponent<ProjectileController>().mousePos = mousePos;
+        Vector3 relativePos = projectile.transform.position - mousePos;
+        projectile.GetComponent<Rigidbody>().AddForce(speed * relativePos);
     }
     
     //temp
