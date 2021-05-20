@@ -1,11 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
 
 public class StateManager : Singleton<StateManager>
 {
-   [SerializeField] private LoadingManager loadingManager;
+   private LoadingManager _loadingManager;
    
    private readonly int[] _state = {0, 0, 0};
    
@@ -20,6 +22,7 @@ public class StateManager : Singleton<StateManager>
    }
    private void Awake()
    {
+      _loadingManager = LoadingManager.Instance;
       ChangeState(0,0);
    }
 
@@ -52,7 +55,7 @@ public class StateManager : Singleton<StateManager>
             _state[i] = 0;
          }
       }
-      //PrintState();
+      PrintState();
       PerformStateBehavior();
    }
 
@@ -75,19 +78,66 @@ public class StateManager : Singleton<StateManager>
             switch (_state[1])
             {
                case 0:
-                  //loading MainMenu
                   ChangeState(1,1);
                   break;
                case 1:
-                  //MenuPoints
+                  //Wait(Showing Main Menu)
                   switch (_state[2])
                   {
                      case 0:
-                        //Wait
+                        ChangeState(1,2);
                         break;
                      case 1:
-                        //loading IngameScene
+                        //Wait
+                        break;
+                     case 2:
+                        //Exit Game
+                        ChangeState(4,0);
+                        break;
+                     case 3:
+                        //Difficulty Button Pressed
+                        ChangeState(2,1);
+                        break;
+                     case 4:
+                        //Options Button Pressed
+                        ChangeState(3,1);
+                        break;
+                  }
+                  break;
+               case 2:
+                  //Diffucilty Menu
+                  switch (_state[2])
+                  {
+                     case 0:
+                        ChangeState(1,2);
+                        break;
+                     case 1:
+                        //Wait (Showing Difficulty Buttons which starts the Game)
+                        break;
+                     case 2:
+                        //Back
+                        ChangeState(1,0);
+                        break;
+                     case 3:
+                        //Start the Game
                         ChangeState(2,0);
+                        break;
+                  }
+                  break;
+               case 3:
+                  //Options Menu
+                  //In Progress
+                  switch (_state[2])
+                  {
+                     case 0:
+                        ChangeState(1,2);
+                        break;
+                     case 1:
+                        //Wait
+                        break;
+                     case 2:
+                        //Back
+                        ChangeState(1,0);
                         break;
                   }
                   break;
@@ -107,15 +157,17 @@ public class StateManager : Singleton<StateManager>
                   switch (_state[2])
                   {
                      case 0:
-                        //spawning
-
+                        ChangeState(1,2);
                         break;
                      case 1:
+                        //spawning
+                        break;
+                     case 2:
                         //Do winningStuff
                         Debug.Log("win");
                         ChangeState(3, 0);
                         break;
-                     case 2:
+                     case 3:
                         //Do losingStuff
                         Debug.Log("lose");
                         ChangeState(3, 0);
@@ -129,14 +181,18 @@ public class StateManager : Singleton<StateManager>
             Debug.Log("reload");
             ChangeState(1,0);
             break;
+         case 4:
+            //Close Game
+            Application.Quit();
+            break;
       }
    }
 
    private void CheckScene(int SceneID)
    {
-      if (loadingManager.GetCurrSceneIndex() != SceneID)
+      if (_loadingManager.GetCurrSceneIndex() != SceneID)
       {
-         loadingManager.LoadScene(SceneID);
+         _loadingManager.LoadScene(SceneID);
       }
    }
 }
