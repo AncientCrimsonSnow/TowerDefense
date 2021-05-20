@@ -12,7 +12,7 @@ namespace InGame
         {
             Vector3 pos = RandomCircle(new Vector3(0,0.5f,0),Random.Range(5,20) );
             GameObject projectile = Instantiate(prefabProjectile, pos, Quaternion.identity);
-            projectile.GetComponent<ProjectileController>().durability = Math.Max(1, 5 - Difficulty.Instance.difficulty);
+            projectile.GetComponent<ProjectileController>().durability = Math.Max(1, 5 - (int)Difficulty.Instance.difficulty);
             //Todo Projectile hier in Richtung fliegen lassen.
         }
     
