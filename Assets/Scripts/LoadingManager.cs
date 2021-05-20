@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LoadingManager : MonoBehaviour
+public class LoadingManager : Singleton<LoadingManager>
 {
     
     public void LoadScene(int sceneID)

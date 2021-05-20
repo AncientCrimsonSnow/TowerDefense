@@ -6,8 +6,8 @@ using UnityEngine;
 // must be a MonoBehaviour subclass.
 public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
-// The instance. This property only has a getter, which means that
-// other parts of the code won't be able to modify it.
+    // The instance. This property only has a getter, which means that
+    // other parts of the code won't be able to modify it.
     public static T Instance
     {
         get
@@ -48,8 +48,7 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         var containerGameObject = new GameObject(name);
         // Create and attach a new instance of whatever 'T' is; we'll return
         // this new instance
-        var singletonComponent =
-            containerGameObject.AddComponent<T>();
+        var singletonComponent = containerGameObject.AddComponent<T>();
         return singletonComponent;
     }
 }
