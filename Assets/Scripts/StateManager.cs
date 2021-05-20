@@ -1,7 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 
@@ -29,6 +27,17 @@ public class StateManager : Singleton<StateManager>
    public void ChangeState(int newState)
    {
       ChangeState(newState,_state.Length - 1);
+   }
+
+   private void ChangeStateAfterTime(int newState, int depth, int time)
+   {
+      StartCoroutine(DoSomethingAfterTime(() => ChangeState(newState, depth), time));
+   }
+
+   public IEnumerator DoSomethingAfterTime(Action function, int time)
+   {
+      yield return new WaitForSeconds(time);
+      function();
    }
    private void ChangeState(int newState, int depth)
    {
@@ -113,6 +122,7 @@ public class StateManager : Singleton<StateManager>
                         break;
                      case 1:
                         //Wait (Showing Difficulty Buttons which starts the Game)
+                        Debug.Log(_loadingManager.GetCurrSceneIndex());
                         break;
                      case 2:
                         //Back
@@ -160,14 +170,23 @@ public class StateManager : Singleton<StateManager>
                         ChangeState(1,2);
                         break;
                      case 1:
-                        //spawning
+                        //Startstuff
+                        ChangeState(2,2);
                         break;
                      case 2:
+                        //Break
+                        ChangeStateAfterTime(3,2,20);
+                        break;
+                     case 3:
+                        //Spawning
+                        ChangeStateAfterTime(2,2,60);
+                        break;
+                     case 4:
                         //Do winningStuff
                         Debug.Log("win");
                         ChangeState(3, 0);
                         break;
-                     case 3:
+                     case 5:
                         //Do losingStuff
                         Debug.Log("lose");
                         ChangeState(3, 0);
@@ -190,9 +209,14 @@ public class StateManager : Singleton<StateManager>
 
    private void CheckScene(int SceneID)
    {
-      if (_loadingManager.GetCurrSceneIndex() != SceneID)
+      if (_loadingManager.GetCurrSceneIndex() != SceneID && !_loadingManager.isLoading)
       {
+         Debug.Log(SceneID);
          _loadingManager.LoadScene(SceneID);
+      }
+      else if(_loadingManager.GetCurrSceneIndex() == SceneID)
+      {
+         _loadingManager.isLoading = false;
       }
    }
 }

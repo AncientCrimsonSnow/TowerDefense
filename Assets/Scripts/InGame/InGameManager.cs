@@ -6,11 +6,15 @@ namespace InGame
     {
         public void Win()
         {
-            StateManager.Instance.ChangeState(1);
+            //WIN
+            Debug.Log("WIN");
+            StateManager.Instance.ChangeState(4);
         }
         public void Lose()
         {
-            StateManager.Instance.ChangeState(2);
+            //LOSE
+            Debug.Log("LOSE");
+            StateManager.Instance.ChangeState(5);
         }
         
         /*
