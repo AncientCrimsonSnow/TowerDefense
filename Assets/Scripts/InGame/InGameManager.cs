@@ -10,13 +10,14 @@ namespace InGame
             Debug.Log("WIN");
             StateManager.Instance.ChangeState(4);
         }
+
         public void Lose()
         {
             //LOSE
             Debug.Log("LOSE");
             StateManager.Instance.ChangeState(5);
         }
-        
+
         /*
          * Clear all the Projectiles in Scene
          */

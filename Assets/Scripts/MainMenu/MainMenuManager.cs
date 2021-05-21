@@ -1,24 +1,22 @@
-using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-namespace Menu
+namespace MainMenu
 {
-    public class MenuManager : MonoBehaviour
+    public class MainMenuManager : MonoBehaviour
     {
         [SerializeField] private GameObject MainMenu;
         [SerializeField] private GameObject DifficultyMenu;
         [SerializeField] private GameObject OptionsMenu;
 
-        private GameObject[] AllMenus;
-
         private StateManager _stateManager;
+
+        private GameObject[] AllMenus;
 
         private void Awake()
         {
             _stateManager = StateManager.Instance;
-            
-            AllMenus = new GameObject[]
+
+            AllMenus = new[]
             {
                 MainMenu,
                 DifficultyMenu,
@@ -32,17 +30,16 @@ namespace Menu
             switchToMenu(1);
             _stateManager.ChangeState(3);
         }
+
         public void ToOptionsMenu()
         {
             switchToMenu(2);
             _stateManager.ChangeState(4);
         }
+
         private void switchToMenu(int menuIndex)
         {
-            foreach (var menu in AllMenus)
-            {
-                menu.SetActive(false);
-            }
+            foreach (var menu in AllMenus) menu.SetActive(false);
             AllMenus[menuIndex].SetActive(true);
         }
 
@@ -51,11 +48,13 @@ namespace Menu
             SetDifficulty(0);
             StartGame();
         }
+
         public void StartGameDiff2()
         {
             SetDifficulty(1);
             StartGame();
         }
+
         public void StartGameDiff3()
         {
             SetDifficulty(2);
@@ -66,11 +65,13 @@ namespace Menu
         {
             _stateManager.ChangeState(3);
         }
+
         public void Back()
         {
             switchToMenu(0);
             _stateManager.ChangeState(2);
         }
+
         private void SetDifficulty(int difficulty)
         {
             Difficulty.Instance.difficulty = difficulty;

@@ -1,29 +1,26 @@
-using System;
 using System.Collections;
 using UnityEngine;
-using Random = UnityEngine.Random;
-
 
 namespace InGame
 {
     public class Spawner : MonoBehaviour
     {
-
-        const int MAX_WAVES = 10;
+        private const int MAX_WAVES = 10;
 
         [SerializeField] private GameObject unitToSpawn;
-        
+        private int currWave;
+
+        private readonly int distance = 100;
+
         private int hp = 1;
         private int speed = 1000;
-        
-        private int distance = 100;
-        private int currWave = 0;
-        
+
 
         private void Awake()
         {
             StartCoroutine(Break(1));
         }
+
         private void SetDifficulty(float difficulty)
         {
             var speedHelper = 500;
@@ -34,7 +31,7 @@ namespace InGame
         private IEnumerator SpawnUnits(int time)
         {
             //CheckSPawn
-            if(StateManager.Instance.GetState(2) == 2)
+            if (StateManager.Instance.GetState(2) == 2)
             {
                 StartCoroutine(Break(time));
             }
@@ -50,10 +47,7 @@ namespace InGame
         private IEnumerator Break(int spawnTime)
         {
             //Break
-            if (CheckforFinalWave())
-            {
-                InGameManager.Instance.Win();
-            }
+            if (CheckforFinalWave()) InGameManager.Instance.Win();
             SetDifficulty(Difficulty.Instance.difficulty);
             Difficulty.Instance.difficulty += Difficulty.Instance.difficulty * 0.1f;
             yield return new WaitUntil(() => StateManager.Instance.GetState(2) == 3);
@@ -64,19 +58,17 @@ namespace InGame
         public bool CheckforFinalWave()
         {
             currWave++;
-            if (currWave > MAX_WAVES)
-            {
-                return true;
-            }
+            if (currWave > MAX_WAVES) return true;
             return false;
         }
+
         /*
          * Spawns the Enemy in a random circle in "distance" range which move towards the center.
          */
         public void Spawn()
         {
-            Vector3 pos = Quaternion.Euler(0.0f, Random.Range(0.0f, 360.0f), 0.0f) * new Vector3(distance,0.5f, 0 );
-            GameObject newEnemey = Instantiate(unitToSpawn, pos, Quaternion.identity);
+            var pos = Quaternion.Euler(0.0f, Random.Range(0.0f, 360.0f), 0.0f) * new Vector3(distance, 0.5f, 0);
+            var newEnemey = Instantiate(unitToSpawn, pos, Quaternion.identity);
             newEnemey.transform.LookAt(new Vector3(0, 0.5f, 0));
             newEnemey.GetComponent<Rigidbody>().AddForce(speed * newEnemey.transform.forward);
             newEnemey.GetComponent<EnemyController>().hp = hp;
