@@ -71,7 +71,6 @@ namespace InGame
             var newEnemey = Instantiate(unitToSpawn, pos, Quaternion.identity);
             newEnemey.transform.LookAt(new Vector3(0, 0.5f, 0));
             newEnemey.GetComponent<Rigidbody>().AddForce(speed * newEnemey.transform.forward);
-            newEnemey.GetComponent<EnemyController>().hp = hp;
         }
     }
 }
