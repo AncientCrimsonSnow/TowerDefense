@@ -12,7 +12,7 @@ namespace InGame
 
         private void Awake()
         {
-            hp = Math.Max(1, 100 - Difficulty.Instance.difficulty * 25);
+            hp = Math.Max(1, 100 - (int) Difficulty.Instance.difficulty * 25);
         }
 
         private void FixedUpdate()
