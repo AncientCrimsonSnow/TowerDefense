@@ -6,8 +6,11 @@ namespace InGame
     public class TowerController : MonoBehaviour
     {
 
+        [Tooltip("In Seconds")] [Range(1.0f, 10f)] [SerializeField] float fireRate = 1.5f;
+        private float nextFire = 0.0f;
         private ProjectileManager _projectileManager;
         public Health health;
+        
 
         private void Awake()
         {
@@ -18,9 +21,9 @@ namespace InGame
         private void FixedUpdate()
         {
             //If we shoot!
-            if (Input.GetMouseButton(0))
+            if (Input.GetMouseButton(0) && Time.time > nextFire)
             {
-                //_projectileManager.Shoot(GetWorldMousePosition());
+                nextFire = Time.time + fireRate;
                 _projectileManager.Shoot();
             }
         }
