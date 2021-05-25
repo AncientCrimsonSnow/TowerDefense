@@ -15,8 +15,9 @@ namespace InGame
             tower = GameObject.Find("Tower");
         }
 
-        public void Shoot(Vector3 mousePos)
+        public void Shoot()
         {
+            Vector3 mousePos = GetWorldMousePosition();
             //Vector3 pos = RandomCircle(new Vector3(0,0.5f,0),Random.Range(5,20) );
 
             // get the position of the tower
@@ -26,6 +27,24 @@ namespace InGame
             // Spawn projectile at the top of the tower
             GameObject projectile = Instantiate(prefabProjectile, towerPos, Quaternion.identity);
             projectile.GetComponent<ProjectileController>().target = mousePos;
+        }
+        
+        private Vector3 GetWorldMousePosition()
+        {
+            //GameObject ground = GameObject.Find("Ground");
+            Plane plane = new Plane(Vector3.up, 0);
+
+            float distance;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if(plane.Raycast(ray, out distance)){
+                Vector3 mousePos = ray.GetPoint(distance);
+                mousePos.y = 0.5f;
+                
+                return mousePos;
+            }
+
+            UnityEngine.Debug.Log("No raycast with plane");
+            return new Vector3(0, 0, 0);
         }
 
         //temp
