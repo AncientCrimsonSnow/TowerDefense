@@ -1,11 +1,12 @@
-using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LoadingManager : MonoBehaviour
+public class LoadingManager : Singleton<LoadingManager>
 {
-    
+    public bool isLoading;
+
     public void LoadScene(int sceneID)
     {
+        isLoading = true;
         SceneManager.LoadScene(sceneID, LoadSceneMode.Single);
     }
 
