@@ -8,6 +8,13 @@ namespace InGame
     {
         [SerializeField] private GameObject prefabProjectile;
 
+        [SerializeField] GameObject tower;
+
+        private void Start()
+        {
+            tower = GameObject.Find("Tower");
+        }
+
         private void Awake()
         {
             Debug.Log("Ich bin der Tower");
@@ -19,20 +26,37 @@ namespace InGame
             {
                 return;
             }
-            var pos = RandomCircle(new Vector3(0, 0.5f, 0), Random.Range(5, 20));
-            var projectile = Instantiate(prefabProjectile, pos, Quaternion.identity);
-            //Todo Projectile hier in Richtung fliegen lassen.
+            
+            Vector3 mousePos = GetWorldMousePosition();
+            //Vector3 pos = RandomCircle(new Vector3(0,0.5f,0),Random.Range(5,20) );
+
+            // get the position of the tower
+            // the position is the top of the tower
+            Vector3 towerPos = tower.transform.position;
+
+            // Spawn projectile at the top of the tower
+            GameObject projectile = Instantiate(prefabProjectile, towerPos, Quaternion.identity);
+            projectile.GetComponent<ProjectileController>().target = mousePos;
         }
 
-        //temp
-        private Vector3 RandomCircle(Vector3 center, float radius)
+        private Vector3 GetWorldMousePosition()
         {
-            var ang = Random.value * 360;
-            Vector3 pos;
-            pos.x = center.x + radius * Mathf.Sin(ang * Mathf.Deg2Rad);
-            pos.y = center.y;
-            pos.z = center.z + radius * Mathf.Cos(ang * Mathf.Deg2Rad);
-            return pos;
+            //GameObject ground = GameObject.Find("Ground");
+            Plane plane = new Plane(Vector3.up, 0);
+
+            float distance;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (plane.Raycast(ray, out distance))
+            {
+                Vector3 mousePos = ray.GetPoint(distance);
+                mousePos.y = 0.5f;
+
+                return mousePos;
+            }
+
+            UnityEngine.Debug.Log("No raycast with plane");
+            return new Vector3(0, 0, 0);
+
         }
     }
 }

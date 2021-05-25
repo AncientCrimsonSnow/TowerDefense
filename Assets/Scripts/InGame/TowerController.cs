@@ -20,6 +20,7 @@ namespace InGame
             //If we shoot!
             if (Input.GetMouseButton(0))
             {
+                //_projectileManager.Shoot(GetWorldMousePosition());
                 _projectileManager.Shoot();
             }
         }
