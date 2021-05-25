@@ -27,7 +27,7 @@ namespace InGame
         {
             
             difficulty = Difficulty.Instance.difficulty;
-            StartCoroutine(Spawning());
+           // StartCoroutine(Spawning());
             
         }
 

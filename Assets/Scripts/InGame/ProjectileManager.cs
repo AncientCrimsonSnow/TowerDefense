@@ -8,14 +8,26 @@ namespace InGame
     {
         
         [SerializeField] private GameObject prefabProjectile;
-        public void Shoot()
+        [SerializeField] GameObject tower;
+
+        private void Start()
         {
-            Vector3 pos = RandomCircle(new Vector3(0,0.5f,0),Random.Range(5,20) );
-            GameObject projectile = Instantiate(prefabProjectile, pos, Quaternion.identity);
-            projectile.GetComponent<ProjectileController>().durability = Math.Max(1, 5 - Difficulty.Instance.difficulty);
-            //Todo Projectile hier in Richtung fliegen lassen.
+            tower = GameObject.Find("Tower");
         }
-    
+
+        public void Shoot(Vector3 mousePos)
+        {
+            //Vector3 pos = RandomCircle(new Vector3(0,0.5f,0),Random.Range(5,20) );
+
+            // get the position of the tower
+            // the position is the top of the tower
+            Vector3 towerPos = tower.transform.position;
+
+            // Spawn projectile at the top of the tower
+            GameObject projectile = Instantiate(prefabProjectile, towerPos, Quaternion.identity);
+            projectile.GetComponent<ProjectileController>().target = mousePos;
+        }
+
         //temp
         private Vector3 RandomCircle ( Vector3 center ,   float radius  ){
             float ang = Random.value * 360;

@@ -5,7 +5,7 @@ using UnityEngine;
 public class ProjectileManager : MonoBehaviour
 {
     [SerializeField] GameObject tower;
-    [SerializeField] [Range(0.0f, 100.0f)] float speed = 0.1f;
+    //[SerializeField] [Range(0.0f, 100.0f)] float speed = 0.1f;
 
     public Vector3 mousePosition;
 
@@ -29,7 +29,9 @@ public class ProjectileManager : MonoBehaviour
         GameObject projectile = Instantiate(prefab_Projectile, towerPos, Quaternion.identity);
         //projectile.GetComponent<ProjectileController>().mousePos = mousePos;
         Vector3 relativePos = projectile.transform.position - mousePos;
-        projectile.GetComponent<Rigidbody>().AddForce(speed * relativePos);
+        //projectile.GetComponent<Rigidbody>().AddForce(speed * relativePos);
+        projectile.GetComponent<ProjectileController>().mousePos = mousePos;
+
     }
     
     //temp
