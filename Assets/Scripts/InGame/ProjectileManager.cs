@@ -8,6 +8,11 @@ namespace InGame
     {
         [SerializeField] private GameObject prefabProjectile;
 
+        private void Awake()
+        {
+            Debug.Log("Ich bin der Tower");
+        }
+
         public void Shoot()
         {
             if (Time.timeScale == 0)
@@ -16,8 +21,6 @@ namespace InGame
             }
             var pos = RandomCircle(new Vector3(0, 0.5f, 0), Random.Range(5, 20));
             var projectile = Instantiate(prefabProjectile, pos, Quaternion.identity);
-            projectile.GetComponent<ProjectileController>().durability =
-                Math.Max(1, 5 - (int) Difficulty.Instance.difficulty);
             //Todo Projectile hier in Richtung fliegen lassen.
         }
 

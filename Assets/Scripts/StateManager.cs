@@ -185,12 +185,10 @@ public class StateManager : Singleton<StateManager>
                                 break;
                             case 4:
                                 //Do winningStuff
-                                Debug.Log("win");
                                 ChangeState(3, 0);
                                 break;
                             case 5:
                                 //Do losingStuff
-                                Debug.Log("lose");
                                 ChangeState(3, 0);
                                 break;
                         }
