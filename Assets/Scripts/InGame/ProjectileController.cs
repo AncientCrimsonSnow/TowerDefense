@@ -10,7 +10,7 @@ namespace InGame
     public class ProjectileController : MonoBehaviour
     {
         //HP of the Projectile
-        public int durability;
+        public Health health;
 
         public Transform projectile;
         public Rigidbody ball;
@@ -20,6 +20,7 @@ namespace InGame
 
         private void Awake()
         {
+            health = GetComponent<Health>();
             ball = gameObject.GetComponent<Rigidbody>();
             projectile = transform;
         }
@@ -48,28 +49,21 @@ namespace InGame
             return velocityXZ + velocityY;
         }
 
+        private void OnCollisionEnter(Collision other)
+        {
+            //Freeze the Projectile, if we hit the Ground
+            if (other.gameObject.name.Equals("Ground")) Freeze(true);
+        }
+        
         /*
          * if we want to freeze it:
          */
         public void Freeze(bool freeze)
         {
             if (freeze)
-            {
-                gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll; 
-            }
+                gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
             else
-            {
                 gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-            }
-        }
-
-        private void OnCollisionEnter(Collision other)
-        {
-            //Freeze the Projectile, if we hit the Ground
-            if (other.gameObject.name.Equals("Ground"))
-            {
-                Freeze(true);
-            }
         }
     }
 }

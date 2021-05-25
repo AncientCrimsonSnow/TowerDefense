@@ -1,34 +1,24 @@
-using System;
 using System.Collections;
 using UnityEngine;
-using Random = UnityEngine.Random;
-
 
 namespace InGame
 {
     public class Spawner : MonoBehaviour
     {
+        private const int MAX_WAVES = 10;
 
-        const int MAX_WAVES = 10;
-        const int WAVE_LENGTH = 60;
-        
         [SerializeField] private GameObject unitToSpawn;
+        private int currWave;
 
-        private float difficulty;
-        
+        private readonly int distance = 100;
+
         private int hp = 1;
         private int speed = 1000;
-        
-        private int distance = 100;
-        private int currWave = 1;
-        
+
 
         private void Awake()
         {
-            
-            difficulty = Difficulty.Instance.difficulty;
-           // StartCoroutine(Spawning());
-            
+            StartCoroutine(Break(1));
         }
 
         private void SetDifficulty(float difficulty)
@@ -38,64 +28,49 @@ namespace InGame
             speed = (int) (speedHelper + difficulty * speedHelper * 0.75f);
         }
 
-        /*
-         * Spawning all Waves
-         */
-        private IEnumerator Spawning()
+        private IEnumerator SpawnUnits(int time)
         {
-            //till max Waves
-            while (currWave <= MAX_WAVES)
+            //CheckSPawn
+            if (StateManager.Instance.GetState(2) == 2)
             {
-                //Each Wave the enemys getting stronger, so we set the difficulty each time a bit higher
-                SetDifficulty(difficulty);
-                difficulty += difficulty*0.2f;
-                
-                //Each Wave is also an IEnumerator, each sec. we spawn one Enemy
-                var spawnWaveCoroutine = SpawnWave();
-                StartCoroutine(spawnWaveCoroutine);
-                
-                //We spawn them WAVE_LENGTH sec long till we stop them
-                yield return new WaitForSeconds(WAVE_LENGTH);
-                StopCoroutine(spawnWaveCoroutine);
-                
-                
-                //Give some Space, that the last spawned Enemys can arrive till the next Wave is spawned
-                Debug.Log("Auslauf/Pause");
-                yield return new WaitForSeconds(20);
-                
-                //Clear all Projectiles
-                InGameManager.Instance.ClearAllProjectiles();
-                
-                currWave++;
-                StartCoroutine(Spawning());
+                StartCoroutine(Break(time));
             }
-            
-            //If we Survive all Waves, we win.
-            InGameManager.Instance.Win();
+            else if (StateManager.Instance.GetState(2) == 3)
+            {
+                //Spawn
+                Spawn();
+                yield return new WaitForSeconds(time);
+                StartCoroutine(SpawnUnits(time));
+            }
         }
 
-        /*
-         * Spawning every sec. one Enemy, till it Stops.
-         */
-        private IEnumerator SpawnWave()
+        private IEnumerator Break(int spawnTime)
         {
-            Debug.Log("NEXT WAVE");
-            while (true)
-            {
-                Spawn();
-                yield return new WaitForSeconds(1);
-            }
+            //Break
+            if (CheckforFinalWave()) InGameManager.Instance.Win();
+            SetDifficulty(Difficulty.Instance.difficulty);
+            Difficulty.Instance.difficulty += Difficulty.Instance.difficulty * 0.1f;
+            yield return new WaitUntil(() => StateManager.Instance.GetState(2) == 3);
+            InGameManager.Instance.ClearAllProjectiles();
+            StartCoroutine(SpawnUnits(spawnTime));
         }
+
+        public bool CheckforFinalWave()
+        {
+            currWave++;
+            if (currWave > MAX_WAVES) return true;
+            return false;
+        }
+
         /*
          * Spawns the Enemy in a random circle in "distance" range which move towards the center.
          */
         public void Spawn()
         {
-            Vector3 pos = Quaternion.Euler(0.0f, Random.Range(0.0f, 360.0f), 0.0f) * new Vector3(distance,0.5f, 0 );
-            GameObject newEnemey = Instantiate(unitToSpawn, pos, Quaternion.identity);
+            var pos = Quaternion.Euler(0.0f, Random.Range(0.0f, 360.0f), 0.0f) * new Vector3(distance, 0.5f, 0);
+            var newEnemey = Instantiate(unitToSpawn, pos, Quaternion.identity);
             newEnemey.transform.LookAt(new Vector3(0, 0.5f, 0));
             newEnemey.GetComponent<Rigidbody>().AddForce(speed * newEnemey.transform.forward);
-            newEnemey.GetComponent<EnemyController>().hp = hp;
         }
     }
 }
