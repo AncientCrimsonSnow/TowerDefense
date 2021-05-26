@@ -128,6 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ebd5b3712e12884d861fca767ce8185, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fireRate: 0.06
   health: {fileID: 1141171378442550147}
 --- !u!114 &5470822392569168522
 MonoBehaviour:
@@ -143,6 +144,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabProjectile: {fileID: 7407831531039846623, guid: ffc025faf4a54f74282a249b9fee230b,
     type: 3}
+  tower: {fileID: 0}
+  projectileFolder: {fileID: 0}
 --- !u!114 &1141171378442550147
 MonoBehaviour:
   m_ObjectHideFlags: 0

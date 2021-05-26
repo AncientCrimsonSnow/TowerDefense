@@ -11,8 +11,7 @@ namespace InGame
         {
             health = GetComponent<Health>();
         }
-
-        private void OnCollisionEnter(Collision other)
+        private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.name.Equals("Tower"))
             {
@@ -24,7 +23,7 @@ namespace InGame
                 if (other.gameObject.GetComponent<TowerController>().health.CurrentHealth <= 0) InGameManager.Instance.Lose();
                 Destroy(gameObject);
             }
-            else if (other.gameObject.layer == LayerMask.NameToLayer("Projectile"))
+            else if (other.gameObject.tag.Equals("Projectile"))
             {
                 /*
                  * If the opponent comes into contact with a projectile,

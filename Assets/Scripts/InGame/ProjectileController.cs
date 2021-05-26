@@ -48,7 +48,6 @@ namespace InGame
             
             return velocityXZ + velocityY;
         }
-
         private void OnCollisionEnter(Collision other)
         {
             //Freeze the Projectile, if we hit the Ground

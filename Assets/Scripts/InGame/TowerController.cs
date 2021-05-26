@@ -6,7 +6,7 @@ namespace InGame
     public class TowerController : MonoBehaviour
     {
 
-        [Tooltip("In Seconds")] [Range(1.0f, 10f)] [SerializeField] float fireRate = 1.5f;
+        [Tooltip("In Seconds")] [Range(0.0f, 10f)] [SerializeField] float fireRate = 0.1f;
         private float nextFire = 0.0f;
         private ProjectileManager _projectileManager;
         public Health health;

@@ -127,6 +127,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: {fileID: 0}
+  projectile: {fileID: 0}
+  ball: {fileID: 0}
+  target: {x: 0, y: 0, z: 0}
+  gravity: 9.81
+  h: 10
 --- !u!114 &7201867012756882946
 MonoBehaviour:
   m_ObjectHideFlags: 0
