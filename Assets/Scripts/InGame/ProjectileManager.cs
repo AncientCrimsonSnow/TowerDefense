@@ -9,10 +9,12 @@ namespace InGame
         [SerializeField] private GameObject prefabProjectile;
 
         [SerializeField] GameObject tower;
+        [SerializeField] private GameObject projectileFolder;
 
         private void Start()
         {
             tower = GameObject.Find("Tower");
+            projectileFolder = GameObject.Find("Projectiles");
         }
 
         private void Awake()
@@ -36,6 +38,7 @@ namespace InGame
 
             // Spawn projectile at the top of the tower
             GameObject projectile = Instantiate(prefabProjectile, towerPos, Quaternion.identity);
+            projectile.transform.parent = projectileFolder.transform;
             projectile.GetComponent<ProjectileController>().target = mousePos;
         }
 

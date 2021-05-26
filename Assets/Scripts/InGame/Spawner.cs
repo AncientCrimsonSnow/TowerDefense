@@ -15,10 +15,12 @@ namespace InGame
         private int hp = 1;
         private int speed = 1000;
 
+        [SerializeField] private GameObject enemyFolder;
 
         private void Awake()
         {
             StartCoroutine(Break(1));
+            enemyFolder = GameObject.Find("Enemies");
         }
 
         private void SetDifficulty(float difficulty)
@@ -69,6 +71,7 @@ namespace InGame
         {
             var pos = Quaternion.Euler(0.0f, Random.Range(0.0f, 360.0f), 0.0f) * new Vector3(distance, 0.5f, 0);
             var newEnemey = Instantiate(unitToSpawn, pos, Quaternion.identity);
+            newEnemey.transform.parent = enemyFolder.transform;
             newEnemey.transform.LookAt(new Vector3(0, 0.5f, 0));
             newEnemey.GetComponent<Rigidbody>().AddForce(speed * newEnemey.transform.forward);
         }
