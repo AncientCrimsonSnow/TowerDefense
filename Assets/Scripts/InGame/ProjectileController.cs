@@ -11,18 +11,19 @@ namespace InGame
     {
         //HP of the Projectile
         public Health health;
-
-        public Transform projectile;
+        //Rigidbody of the projectile
         public Rigidbody ball;
+        //Target position where to shoot at
         public Vector3 target;
+        //Gravity to use for the shot
         public float gravity = 9.81f;
-        public int h = 10;
+        //The maximum height the projectile should fly
+        public int heightToFly = 10;
 
         private void Awake()
         {
             health = GetComponent<Health>();
             ball = gameObject.GetComponent<Rigidbody>();
-            projectile = transform;
         }
 
         private void Start()
@@ -31,6 +32,9 @@ namespace InGame
             Launch();
         }
         
+        /// <summary>
+        /// This method sets the gravity for the flight and sets the projectile velocity to the calculated velocity for the launch.
+        /// </summary>
         private void Launch()
         {
             Physics.gravity = Vector3.up * -gravity;
@@ -38,13 +42,17 @@ namespace InGame
             ball.velocity = CalculateLaunchVelocity();
         }
         
+        /// <summary>
+        /// This method calculates everything we need to launch a projectile parabolic with physics.
+        /// </summary>
+        /// <returns>Velocity to shoot a projectile towards a target.</returns>
         private Vector3 CalculateLaunchVelocity()
         {
             float displacementY = target.y - ball.position.y;
             Vector3 displacementXZ = new Vector3(target.x - ball.position.x, 0, target.z - ball.position.z);
 
-            Vector3 velocityY = Vector3.up * Mathf.Sqrt(-2 * -gravity * h);
-            Vector3 velocityXZ = displacementXZ / (Mathf.Sqrt(-2 * h / -gravity) + Mathf.Sqrt(2 * (displacementY - h) / -gravity));
+            Vector3 velocityY = Vector3.up * Mathf.Sqrt(-2 * -gravity * heightToFly);
+            Vector3 velocityXZ = displacementXZ / (Mathf.Sqrt(-2 * heightToFly / -gravity) + Mathf.Sqrt(2 * (displacementY - heightToFly) / -gravity));
             
             return velocityXZ + velocityY;
         }
