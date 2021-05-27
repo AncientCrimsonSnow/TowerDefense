@@ -5,7 +5,6 @@ namespace InGame
 {
     public class TowerController : MonoBehaviour
     {
-
         [Tooltip("In Seconds")] [Range(0.0f, 10f)] [SerializeField] float fireRate = 0.1f;
         private float nextFire = 0.0f;
         private ProjectileManager _projectileManager;
@@ -20,7 +19,7 @@ namespace InGame
         
         private void FixedUpdate()
         {
-            //If we shoot!
+            //If we shoot and there is no shoot cooldown!
             if (Input.GetMouseButton(0) && Time.time > nextFire)
             {
                 nextFire = Time.time + fireRate;

@@ -30,7 +30,6 @@ namespace InGame
             }
             
             Vector3 mousePos = GetWorldMousePosition();
-            //Vector3 pos = RandomCircle(new Vector3(0,0.5f,0),Random.Range(5,20) );
 
             // get the position of the tower
             // the position is the top of the tower
@@ -38,20 +37,24 @@ namespace InGame
 
             // Spawn projectile at the top of the tower
             GameObject projectile = Instantiate(prefabProjectile, towerPos, Quaternion.identity);
+            // Setting the parent of the GameObject
             projectile.transform.parent = projectileFolder.transform;
+            // Setting the target of the projectile to the mouse position
             projectile.GetComponent<ProjectileController>().target = mousePos;
         }
 
         private Vector3 GetWorldMousePosition()
         {
-            //GameObject ground = GameObject.Find("Ground");
+            // Creating a plane as ground
             Plane plane = new Plane(Vector3.up, 0);
 
             float distance;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            // if the plane and the mouse position cut each other, set the new mouse position
             if (plane.Raycast(ray, out distance))
             {
                 Vector3 mousePos = ray.GetPoint(distance);
+                // set Y to 0.5f, bc the projectile will stay at 0.5 when hitting the ground
                 mousePos.y = 0.5f;
 
                 return mousePos;
