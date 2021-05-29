@@ -12,7 +12,6 @@ namespace InGame
 
         private void Awake()
         {
-            Debug.Log("Ich bin der HealthBarManager");
             Health.OnHealthAdded += AddHealthBar;
             Health.OnHealthRemoved += RemoveHealthBar;
         }

@@ -16,7 +16,7 @@ public class Health : MonoBehaviour
 
     [SerializeField] private bool hasHealthBar;
     
-    private void OnEnable()
+    private void Start()
     {
         CurrentHealth = maxHealth;
         if (hasHealthBar)
