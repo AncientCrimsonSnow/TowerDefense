@@ -173,10 +173,12 @@ public class StateManager : Singleton<StateManager>
                                 break;
                             case 1:
                                 //Startstuff
+                                Highscore.Instance.setCurrScore(-1);
                                 ChangeState(2, 2);
                                 break;
                             case 2:
                                 //Break
+                                Highscore.Instance.setCurrScore(Highscore.Instance.getCurrScore()+1);
                                 ChangeStateAfterTime(3, 2, 20);
                                 break;
                             case 3:
@@ -185,10 +187,12 @@ public class StateManager : Singleton<StateManager>
                                 break;
                             case 4:
                                 //Do winningStuff
+                                Highscore.Instance.DisableCurrScore();
                                 ChangeState(3, 0);
                                 break;
                             case 5:
                                 //Do losingStuff
+                                Highscore.Instance.DisableCurrScore();
                                 ChangeState(3, 0);
                                 break;
                         }

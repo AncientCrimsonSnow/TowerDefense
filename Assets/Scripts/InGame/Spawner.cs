@@ -11,8 +11,7 @@ namespace InGame
         private int currWave;
 
         private readonly int distance = 100;
-
-        private int hp = 1;
+        
         private int speed = 1000;
 
         [SerializeField] private GameObject enemyFolder;
@@ -26,7 +25,6 @@ namespace InGame
         private void SetDifficulty(float difficulty)
         {
             var speedHelper = 500;
-            hp = (int) (1 * difficulty);
             speed = (int) (speedHelper + difficulty * speedHelper * 0.75f);
         }
 
