@@ -25,18 +25,6 @@
   <h3 align="center">Tower Defense</h3>
 
 
-
-
-<!-- TABLE OF CONTENTS -->
-## Table of Contents
-
-  * [About the Project](#about-the-project)
-  * [Basic Idea](#basic-idea)
-  * [Built With](#built-with)
-  * [Contributing](#contributing)
-
-
-
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 ### Basic Idea
