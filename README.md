@@ -44,6 +44,5 @@ Version: 2020.3.2f1
 ## Contributing
 * Juri Wiechmann
 * Miles Döring
-* Daria Katysheva
 
 
