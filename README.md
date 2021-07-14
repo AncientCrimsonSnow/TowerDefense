@@ -34,8 +34,6 @@
   * [About the Project](#about-the-project)
   * [Basic Idea](#basic-idea)
   * [Built With](#built-with)
-  * [Prerequisites](#prerequisites)
-  * [Installation](#installation)
   * [Contributing](#contributing)
 
 
