@@ -43,6 +43,6 @@ Version: 2020.3.2f1
 <!-- CONTRIBUTING -->
 ## Contributing
 * Juri Wiechmann
-* Miles Döring
+* Kenneth Englisch
 
 
